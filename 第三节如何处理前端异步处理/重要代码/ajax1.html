@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script>
+    //使用get方法
+    //1.创建一个xhr对象---ajax要用的浏览器对象
+    function getXhr() {
+        var xhr=null;//创建一个变量
+        //根据浏览器不同，得到对象的方法不一样
+        if(window.XMLHttpRequest){
+            //一般我们用的都是这类型的浏览器  谷歌 火狐 IE6之后的
+            xhr=new XMLHttpRequest();
+        }else{
+            //IE5  IE6或更早的
+            ActiveXObject('Microsot.XMLHttp');
+        }
+        return xhr;
+    }
+    function getText() {
+        var xhr=getXhr();//得到xhr对象
+        var abc=encodeURI(document.getElementById("a").value);//转为URI
+        //通过open创建请求
+        /*open的参数，第一个是提交的方法(get or post)，第二个参数是提交的路径
+        第三个参数为 是否异步提交
+        */
+        xhr.open("get","getInfo.do?word="+abc,true);
+        //相当于把一个 name=word的文本框的value=abc 传到后台
+        //设置回调方法(执行完方法后做的操作)，
+        // 要识别状态 每当readyState属性改变时调用下面的方法
+        xhr.onreadystatechange=function(){
+            //如果状态码改变了就调用此方法
+            //接收请求  响应
+            //xhr.readyState==4  接收请求成功
+            //xhr.status==200  响应成功 --接收数据
+            if(xhr.readyState==4&&xhr.status==200){
+                //xhr.responseText代表服务器端res输出的内容
+                document.getElementById("b").value=xhr.responseText;
+            }
+        };
+        //用send方法把请求发出去  get方法无参数 post可以传参
+        xhr.send();
+    }
+</script>
+<body>
+<input type="text" name="n" id="a">
+<a onclick="getText()">get服务器端数据</a>
+<input type="text" name="m" id="b">
+</body>
+</html>
