@@ -1,0 +1,37 @@
+Servlet是用来响应客户端请求(http请求)的服务器端JAVA程序。在MVC开发模式
+中担任控制层
+2 MVC开发模式(模型pojo实体类，视图，前端页面，控制servlet)
+3 实现servlet:
+   a 继承HttpServlet(导包)重写service方法
+4 Servlet核心对象
+HttpServletRequest:http请求对象，用以得到HTTP请求中的所有信息。
+HttpServletResponse:http响应对象，用来响应http请求，返回数据
+5 实现跳转的两种方法
+A req.getRequestDispatcheer("index.jsp")
+转发
+通过req对象，地址栏不会发生变化，只能在项目的网页中跳转
+可以通过req对象传参
+8 resp.sendRedirect("http://www.baidu.com")重定向
+通过resp对象，地址会发生变化，可以跳转外网，不可以通过req传参
+但是可以通过地址栏传参
+list.jsp?a=43&b=44 将a=43和b=44传过去
+JSP也是一个Servlet，只是他负责显示的功能。
+Ajax:
+一种能够出路异步处理的技术，核心对象是XMLHTTPrequest基于浏览器，可以
+以不同刷新整个页面{局部刷新}就可以做到数据交互
+同步:步调要一至，一件事了要有反锁继续做，
+打电话，大给对方，但是对方也在打电话，接不到，那你就一直打，打到他接为止，在做下一步
+异步：只要做就行
+打电话对方占线，那就发条消息，等他有空会电话
+细分原理：
+1 浏览器加载页面可不销毁当前页面，不跳转的情况下，支出一部分资源从远程获取资源，通过js脚本
+语言
+AJAX开发流程
+1创建xhr对象
+2用open的方式创建请求
+3设置回调事件
+4把事件用send发请求
+这四个步骤是有序的
+状态readyState:
+0 未初始化
+1 正在请求中
