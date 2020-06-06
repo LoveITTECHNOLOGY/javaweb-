@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/jquery.js"></script>
+    <script>
+        $(function () {
+            //jquery的入口函数
+            //通过id找到按钮，添加点击事件
+            $("#ta").click(function () {
+                  //$.ajax-responseText
+                var x=$("#mydiv").html();//得到div的文本框
+                var ha=$.ajax({
+                    type:"POST", //请求的钱方法
+                    url:"getIn.do", //请求的路径
+                    data:"name="+x,//请求的参数
+                    async:false//不能为异步 这里要同步，等后台的值传过来再赋值
+                }).responseText;//jquery封装的ajax异步请求方法
+                //让ha的值在另一个标签显示
+                //alert(ha);
+                $("#mydiv").html('<h2>'+ha+'</h2>');
+            });
+
+        })
+
+    </script>
+
+</head>
+<body>
+<h1 align="center">ajax</h1>
+<div id="mydiv">蔡徐坤</div>
+<input type="button" id="ta" value="点击">
+
+</body>
+</html>

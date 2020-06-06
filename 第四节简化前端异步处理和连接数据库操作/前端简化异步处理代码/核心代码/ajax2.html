@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script>
+    function getXhr() {
+    var xhr=null;//创建一个变量
+    //根据浏览器不同，得到对象的方法不一样
+    if(window.XMLHttpRequest){
+        //一般我们用的都是这类型的浏览器  谷歌 火狐 IE6之后的
+        xhr=new XMLHttpRequest();
+    }else{
+        //IE5  IE6或更早的
+        ActiveXObject('Microsot.XMLHttp');
+    }
+    return xhr;
+    }
+
+    function  postText() {
+    var xhr=getXhr();
+    xhr.open("post","postInfo.do",true);
+    //利用form表单形式把参数传过去
+        xhr.setRequestHeader('content-type','application/x-www-form-urlencoded');
+        //状态-回调函数
+        xhr.onreadystatechange=function () {
+            if(xhr.readyState==4&&xhr.status==200){
+                alert(xhr.responseText);
+            }
+
+        }
+        //用send方法把请求发出去  get方法无参数 post可以传参
+        xhr.send("uName=魏嘉福");
+        
+    }
+    
+</script>
+<body>
+<input type="button" value="post方法传数据" onclick="postText()">
+
+</body>
+</html>
