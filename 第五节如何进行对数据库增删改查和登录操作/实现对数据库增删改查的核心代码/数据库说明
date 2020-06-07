@@ -1,0 +1,4 @@
+select * from student
+#表示创建队列
+create sequence STUDENT_ID_seq start with 10 increment by 1
+insert into student values(STUDENT_ID_SEQ.Nextval,20,'涂鸦'，'男')
