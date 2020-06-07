@@ -1,0 +1,4 @@
+直接用java idea直接打开然后配置环境变量
+1 本地tomcat配置选择tomcat 9.0
+2 对服务器在进行配置不仅要tomcat 9.0还要热部署 改端口1087 只要不是1080就ok 报错 选择deployment 下点击+选择atriafts
+3 然后对项目进行配置project structure 选择对classes配置 lib配置
